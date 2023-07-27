@@ -11,7 +11,7 @@ const Signin = () => {
 
   const [checked,setcheck] = useState(false);
   const onSignIn = () => {
-    console.log("Sign in was touched");
+    console.log("Sign in was touched. Hola");
   }
   return (
     <View style={styles.conatiner}>
