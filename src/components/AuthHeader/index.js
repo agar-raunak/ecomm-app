@@ -5,11 +5,11 @@ const AuthHeader = ({ title, onBackpress}) => {
   
   return (
     <View style= {styles.container}>
-      <Pressable onPress={onBackpress} hitSlop={15}>
+      <Pressable onPress={onBackpress} hitSlop={20}>
         <Image style={styles.image} source={require('../../assets/back.png')} />
       </Pressable>
       <Text style={styles.title}> {title}</Text>
     </View>
   )
 }
-export default AuthHeader
+export default React.memo(AuthHeader);

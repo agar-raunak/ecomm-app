@@ -19,6 +19,7 @@ export const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight:'bold',
     textAlign:'center',
+    color:colors.black,
   },
   innertitle: {
     color: colors.orange,

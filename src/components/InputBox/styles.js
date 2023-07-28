@@ -25,6 +25,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal:16,
     paddingVertical:20,
     flex:1,
+    color:colors.black,
   },
   eye: {
     width: 24,
