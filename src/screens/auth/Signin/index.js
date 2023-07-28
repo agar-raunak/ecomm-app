@@ -7,29 +7,38 @@ import InputBox from "../../../components/InputBox";
 import Checkbox from "../../../components/Checkbox";
 import Separator from "../../../components/Separator";
 import Googlelogin from "../../../components/Googlelogin";
-const Signin = () => {
+import { SafeAreaView } from "react-native-safe-area-context";
+const Signin = ({navigation}) => {
 
   const [checked,setcheck] = useState(false);
   const onSignIn = () => {
-    console.log("Sign in was touched. Hola");
-  }
+    console.log("Sign up was touched.");
+    navigation.navigate("Signup");
+  };
+
+  const onBack = () => {
+    navigation.goBack();
+  };
+
   return (
-    <View style={styles.conatiner}>
-      <AuthHeader title="Sign In"/>
-      <InputBox title="E-mail" placeholder="example@gmail.com"/>
-      <InputBox title="Password" placeholder="**********" ispassword/>
-      
-      <Button title="Sign In" style={styles.button}/>
-      <Separator text="Or Sign in with"/>
-      <Googlelogin/>
-      <Text style={styles.footertext}>
-        Don't have an account?
-        <Text onPress = {onSignIn} style={styles.footerlink}>
-          Sign Up
-        </Text>
-      </Text>
+    <SafeAreaView>
+      <View style={styles.conatiner}>
+        <AuthHeader title="Sign In" onBackpress={onBack} />
+        <InputBox title="E-mail" placeholder="example@gmail.com"/>
+        <InputBox title="Password" placeholder="**********" ispassword/>
         
-    </View>
+        <Button title="Sign In" style={styles.button}/>
+        <Separator text="Or Sign in with"/>
+        <Googlelogin/>
+        <Text style={styles.footertext}>
+          Don't have an account?
+          <Text onPress = {onSignIn} style={styles.footerlink}>
+            Sign Up
+          </Text>
+        </Text>
+          
+      </View>
+    </SafeAreaView>
     
   )
 }

@@ -2,7 +2,14 @@ import React from "react";
 import { Text,Image,View, Pressable } from "react-native";
 import Button from "../../../components/Button"; 
 import { styles } from './styles';
-const Splash = () => {
+const Splash = ({ navigation }) => {
+
+  console.log('navigation :>>', navigation);
+
+  const onSignup = () => {
+    navigation.navigate('Signup');
+  }
+
   return (
     <View style={styles.conatiner}>
       <Image resizeMode='contain' style = {styles.image} source={require('../../../assets/photo_main_screen.jpg')}/>
@@ -12,9 +19,9 @@ const Splash = () => {
         <Text style= {styles.title}>Here!</Text>
       </View>
       
-      <Button title= "Signup"/>
+      <Button onPress= {(onSignup)} title= "Sign Up"/>
 
-      <Pressable hitSlop={20}>
+      <Pressable onPress= {()=> navigation.navigate('Signin')} hitSlop={20}>
         <Text style={styles.footertext}>Sign In</Text>
       </Pressable>
     </View>
@@ -22,4 +29,4 @@ const Splash = () => {
   )
 }
 
-export default Splash
+export default React.memo(Splash);

@@ -14,15 +14,32 @@ import {
   StyleSheet,
   Text,
 } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { colors } from "./src/utils/colors";
 
+const Stack = createNativeStackNavigator();
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+const Tab = createBottomTabNavigator();
 import Signup from './src/screens/auth/Signup';
 import AuthHeader from './src/components/AuthHeader';
 import Splash from './src/screens/auth/Splash';
 import Signin from './src/screens/auth/Signin';
 
 
+import {
+  SafeAreaProvider,
+  useSafeAreaInsets,
+} from 'react-native-safe-area-context';
+
+const mytheme = {
+  colors: {
+    background: colors.white,
+  }
+};
+
 function App(): JSX.Element {
-  const [theme, settheme] = useState(true)
+  // const [theme, settheme] = useState(true)
 
   useEffect(() => {
     GoogleSignin.configure({
@@ -37,15 +54,18 @@ function App(): JSX.Element {
     console.log("hello")
   }
   return (
-    <SafeAreaView>
-      <Signin/>
-    </SafeAreaView>
-    
+    <SafeAreaProvider>
+      <NavigationContainer theme={mytheme}>
+        <Stack.Navigator>
+          <Stack.Screen name="Splash" component={Splash} options= {{headerShown: false}}/>
+          <Stack.Screen name="Signup" component={Signup} options= {{headerShown: false}}/>
+          <Stack.Screen name="Signin" component={Signin} options= {{headerShown: false}}/>
+        </Stack.Navigator>  
+      </NavigationContainer>  
+    </SafeAreaProvider>
+  
   );
 }
 
-const styles = StyleSheet.create({
-  themeheader: {margin:20, fontSize: 16, backgroundColor: 'yellow'}
-})
 
 export default App;
