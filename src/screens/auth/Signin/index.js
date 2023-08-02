@@ -22,7 +22,7 @@ const Signin = ({navigation}) => {
 
   return (
     <SafeAreaView>
-      <View style={styles.conatiner}>
+      <View style={styles.container}>
         <AuthHeader title="Sign In" onBackpress={onBack} />
         <InputBox title="E-mail" placeholder="example@gmail.com"/>
         <InputBox title="Password" placeholder="**********" ispassword/>

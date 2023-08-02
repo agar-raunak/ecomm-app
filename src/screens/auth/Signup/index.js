@@ -24,7 +24,7 @@ const Signup = ({navigation}) => {
 
   return (
     <SafeAreaView>
-      <View style={styles.conatiner}>
+      <View style={styles.container}>
         <AuthHeader title="Sign up" onBackpress={onBack}/>
         <InputBox title="Name" placeholder="John Doe"/>
         <InputBox title="E-mail" placeholder="example@gmail.com"/>
