@@ -27,17 +27,31 @@ import Signin from './src/screens/auth/Signin';
 import Home from './src/screens/app/Home';
 import Favourite from './src/screens/app/Favourite';
 import Profile from './src/screens/app/Profile';
+import CreateListing from './src/screens/app/CreateListing';
 
 
 import {
   SafeAreaProvider,
-  useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+import ProductDetails from './src/components/ProductDetails';
+import Settings from './src/screens/app/Settings';
+import MyListings from './src/screens/app/MyListings';
 
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
+const ProfileStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Profile" component={Profile} options= {{headerShown:false}}/>
+      <Stack.Screen name="Settings" component={Settings} options= {{headerShown:false}}/>
+      <Stack.Screen name="CreateListing" component={CreateListing} options= {{headerShown:false}}/>
+      <Stack.Screen name="MyListings" component={MyListings} options= {{headerShown:false}}/>
+
+    </Stack.Navigator>
+  )
+}
 const Tabs = () => (
   <Tab.Navigator 
   screenOptions={({ route }) => ({
@@ -50,7 +64,7 @@ const Tabs = () => (
           : require('./src/assets/Tabs/home.png');
       } else if (route.name === 'Favourite') {
         icon = focused ? require('./src/assets/Tabs/favourite_active.png') : require('./src/assets/Tabs/favourite.png');
-      } else if (route.name === 'Profile') {
+      } else if (route.name === 'ProfileStack') {
         icon = focused ? require('./src/assets/Tabs/user_active.png') : require('./src/assets/Tabs/user.png');
       }
 
@@ -64,7 +78,7 @@ const Tabs = () => (
   >
     <Tab.Screen name="Home" component={Home} />
     <Tab.Screen name="Favourite" component={Favourite} />
-    <Tab.Screen name="Profile" component={Profile} />
+    <Tab.Screen name="ProfileStack" component={ProfileStack} />
   </Tab.Navigator>
 )
 
@@ -94,6 +108,8 @@ function App(): JSX.Element {
           {isSignedIn ? (
             <>
               <Stack.Screen name="Tabs" component={Tabs} options= {{headerShown:false}}/>
+              <Stack.Screen name="ProductDetails" component={ProductDetails} options= {{headerShown:false}}/>
+
             </>
           ) : (
             <>
